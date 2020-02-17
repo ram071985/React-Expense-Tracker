@@ -29,8 +29,8 @@ class ExpenseTracker extends Component {
     this.setState({ [name]: value });
   }
 
- /* TableRow() {
-    const rows = this.state.expenses.map(function(expense) {
+  TableRow() {
+    const {rows} = this.state.expenses.map(function(expense) {
       return (
         <tr>
           <td>{this.state.type}</td>
@@ -38,32 +38,41 @@ class ExpenseTracker extends Component {
           <td>{this.state.date}</td>
           <td>{this.state.amount}</td>
         </tr>
-      );
+     );
     });
     // rows should equal an array
     // of jsx <row>'s
     
-  }*/
-
+  }
+     
   handleClick() {
+    //take input 
     const addRow = {
       type: this.state.type,
       name: this.state.name,
       date: this.state.date,
-      amount: this.state.amount
+     amount: this.state.amount
+      
     }
-    console.log(addRow)
-    this.setState({expenses: addRow})
-    console.log()
-
-    // add to the empty array in Expenses: []
-    // using an object constructor
-    // this.setState(this.state.expenses)
+  
+    const expenseArray = [this.state.expenses];
+    expenseArray.push({addRow});
+    console.log(expenseArray)
+    this.setState(prevState => {
+      return {
+        expense: prevState.expenseArray
+    
+      }
+      
+    })
+console.log(this.state.expenses)
+ 
 
   }
 
 
   render() {
+
     return (
       <Container>
         <Form.Row className="justify-content-md-center mt-4">
@@ -138,7 +147,9 @@ class ExpenseTracker extends Component {
               <th>Amount</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {rows}}
+          </tbody>
         </Table>
       </Container>
     );
@@ -147,3 +158,5 @@ class ExpenseTracker extends Component {
 
 
 export default ExpenseTracker;
+
+
