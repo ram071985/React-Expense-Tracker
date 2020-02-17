@@ -21,32 +21,15 @@ class ExpenseTracker extends Component {
       expenses: []
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
-
-  TableRow() {
-    const {rows} = this.state.expenses.map(function(expense) {
-      return (
-        <tr>
-          <td>{this.state.type}</td>
-          <td>{this.state.name}</td>
-          <td>{this.state.date}</td>
-          <td>{this.state.amount}</td>
-        </tr>
-     );
-    });
-    // rows should equal an array
-    // of jsx <row>'s
-    
-  }
-     
-  handleClick() {
-    //take input 
+  
+  handleSubmit() {
     const addRow = {
       type: this.state.type,
       name: this.state.name,
@@ -55,15 +38,16 @@ class ExpenseTracker extends Component {
       
     }
   
-    const expenseArray = [this.state.expenses];
-    expenseArray.push({addRow});
+    /*expenseArray.push({addRow});
     console.log(expenseArray)
+    debugger;*/
     this.setState(prevState => {
+      const expenseArray = []
+      expenseArray.push()
       return {
-        expense: prevState.expenseArray
-    
+        expense: prevState.addRow
+        
       }
-      
     })
 console.log(this.state.expenses)
  
@@ -72,6 +56,22 @@ console.log(this.state.expenses)
 
 
   render() {
+
+    function TableRow() {
+      const rows = this.state.expenses.map(function(expense) {
+        return (
+          <tr>
+            <td>{this.state.type}</td>
+            <td>{this.state.name}</td>
+            <td>{this.state.date}</td>
+            <td>{this.state.amount}</td>
+          </tr>
+       );
+      });
+      // rows should equal an array
+      // of jsx <row>'s
+      
+    }
 
     return (
       <Container>
@@ -104,7 +104,7 @@ console.log(this.state.expenses)
             />
           </Form.Group>
         </Form.Row>
-        <Form.Row className="justify-content-md-center mt-4">
+        <Form.Row className="justify-content-md-center mt-4" onSubmit={this.handleSubmit}>
           <Col md="auto">
             <h4 className="text-body">Date:</h4>
           </Col>
@@ -128,16 +128,16 @@ console.log(this.state.expenses)
               onChange={this.handleChange}
             />
           </Form.Group>
-        </Form.Row>
-        <Row className="justify-content-md-center mt-5">
+          <Row className="justify-content-md-center mt-5">
           <Col md="auto">
             <ButtonToolbar>
-              <Button variant="success" size="lg" onClick={this.handleClick}>
+              <Button variant="success" size="lg" onClick={this.handleSubmit}>
                 Add Expense
               </Button>
             </ButtonToolbar>
           </Col>
         </Row>
+        </Form.Row>
         <Table striped bordered hover variant="dark" className="mt-5">
           <thead>
             <tr>
@@ -148,7 +148,6 @@ console.log(this.state.expenses)
             </tr>
           </thead>
           <tbody>
-            {rows}}
           </tbody>
         </Table>
       </Container>
