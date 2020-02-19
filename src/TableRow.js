@@ -7,10 +7,10 @@ function TableRow() {
 
     <Table striped bordered hover variant="dark">
         <tr>
-          <td>{this.state.type}</td>
-          <td>{this.state.name}</td>
-          <td>{this.state.date}</td>
-          <td>{this.state.amount}</td>
+          <td>{this.type}</td>
+          <td>{this.name}</td>
+          <td>{this.date}</td>
+          <td>{this.amount}</td>
         </tr>
     </Table>
   );

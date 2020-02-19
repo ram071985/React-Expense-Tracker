@@ -9,6 +9,7 @@ import {
   ButtonToolbar,
   Table
 } from "react-bootstrap";
+import TableRow from "./TableRow"
 
 class ExpenseTracker extends Component {
   constructor() {
@@ -23,12 +24,12 @@ class ExpenseTracker extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
-  
+
   handleSubmit() {
     const addRow = {
       type: this.state.type,
@@ -37,41 +38,20 @@ class ExpenseTracker extends Component {
      amount: this.state.amount
       
     }
-  
-    /*expenseArray.push({addRow});
-    console.log(expenseArray)
-    debugger;*/
     this.setState(prevState => {
-      const expenseArray = []
-      expenseArray.push()
-      return {
-        expense: prevState.addRow
-        
-      }
+      prevState.expenses.push([...prevState.expenses, addRow])
+
+
+console.log(this.state)
+ 
     })
-console.log(this.state.expenses)
+      
  
 
   }
 
 
   render() {
-
-    function TableRow() {
-      const rows = this.state.expenses.map(function(expense) {
-        return (
-          <tr>
-            <td>{this.state.type}</td>
-            <td>{this.state.name}</td>
-            <td>{this.state.date}</td>
-            <td>{this.state.amount}</td>
-          </tr>
-       );
-      });
-      // rows should equal an array
-      // of jsx <row>'s
-      
-    }
 
     return (
       <Container>
@@ -104,7 +84,10 @@ console.log(this.state.expenses)
             />
           </Form.Group>
         </Form.Row>
-        <Form.Row className="justify-content-md-center mt-4" onSubmit={this.handleSubmit}>
+        <Form.Row
+          className="justify-content-md-center mt-4"
+          onSubmit={this.handleSubmit}
+        >
           <Col md="auto">
             <h4 className="text-body">Date:</h4>
           </Col>
@@ -129,14 +112,14 @@ console.log(this.state.expenses)
             />
           </Form.Group>
           <Row className="justify-content-md-center mt-5">
-          <Col md="auto">
-            <ButtonToolbar>
-              <Button variant="success" size="lg" onClick={this.handleSubmit}>
-                Add Expense
-              </Button>
-            </ButtonToolbar>
-          </Col>
-        </Row>
+            <Col md="auto">
+              <ButtonToolbar>
+                <Button variant="success" size="lg" onClick={this.handleSubmit}>
+                  Add Expense
+                </Button>
+              </ButtonToolbar>
+            </Col>
+          </Row>
         </Form.Row>
         <Table striped bordered hover variant="dark" className="mt-5">
           <thead>
@@ -147,15 +130,11 @@ console.log(this.state.expenses)
               <th>Amount</th>
             </tr>
           </thead>
-          <tbody>
-          </tbody>
+   
         </Table>
       </Container>
     );
   }
 }
 
-
 export default ExpenseTracker;
-
-
