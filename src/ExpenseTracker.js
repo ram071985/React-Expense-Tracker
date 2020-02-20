@@ -9,7 +9,6 @@ import {
   ButtonToolbar,
   Table
 } from "react-bootstrap";
-import TableRow from "./TableRow"
 
 class ExpenseTracker extends Component {
   constructor() {
@@ -17,7 +16,7 @@ class ExpenseTracker extends Component {
     this.state = {
       type: "",
       name: "",
-      date: "",
+      date: new Date(),
       amount: "",
       expenses: []
     };
@@ -31,6 +30,10 @@ class ExpenseTracker extends Component {
   }
 
   handleSubmit() {
+  this.addRows()
+  }
+
+  addRows() {
     const addRow = {
       type: this.state.type,
       name: this.state.name,
@@ -40,18 +43,19 @@ class ExpenseTracker extends Component {
     }
     this.setState(prevState => {
       prevState.expenses.push([...prevState.expenses, addRow])
-
-
-console.log(this.state)
- 
     })
-      
- 
 
   }
-
-
+  
   render() {
+    let rows = this.state.expenses.map( expense => 
+      <tr>
+        <td>{expense.type}</td>
+        <td>{expense.name}</td>
+        <td>{expense.date}</td>
+        <td>{expense.amount}</td>
+      </tr>
+      )
 
     return (
       <Container>
@@ -130,7 +134,9 @@ console.log(this.state)
               <th>Amount</th>
             </tr>
           </thead>
-   
+          <tbody> 
+            {rows}
+          </tbody>
         </Table>
       </Container>
     );

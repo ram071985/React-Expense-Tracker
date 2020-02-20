@@ -1,18 +1,15 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Table } from "react-bootstrap";
 
-function TableRow() {
+function TableRow(props) {
+  
   return (
-
-    <Table striped bordered hover variant="dark">
         <tr>
-          <td>{this.type}</td>
-          <td>{this.name}</td>
-          <td>{this.date}</td>
-          <td>{this.amount}</td>
+          <td>{props.type}</td> 
+          <td>{props.name}</td>
+          <td>{props.date}</td>
+          <td>{props.amount}</td>
         </tr>
-    </Table>
   );
 }
 
