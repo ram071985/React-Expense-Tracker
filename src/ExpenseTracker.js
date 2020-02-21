@@ -10,81 +10,80 @@ import {
   Table
 } from "react-bootstrap";
 
+
+
 class ExpenseTracker extends Component {
   constructor() {
     super();
     this.state = {
       type: "",
       name: "",
-      date: "",
+      transactiondate: "",
       amount: "",
       expenses: []
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
-  handleChange(event) {
+  handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
   this.addRows()
+  console.log(this.state.amount)
   }
+
+
+
 
   renderRows(expense, index) {
     return (
       <tr key={index}>
         <td>{expense.type}</td>
         <td>{expense.name}</td>
-        <td>{expense.date}</td>
+        <td>{expense.transactiondate}</td>
         <td>{expense.amount}</td>
       </tr>
     )
+ 
   }
-
+ 
   addRows() {
     const addRow = {
       type: this.state.type,
       name: this.state.name,
-      date: this.state.date,
+      date: this.state.transactiondate,
      amount: this.state.amount
     };
     this.setState(prevState => {
      return { expenses: [...prevState.expenses, addRow]}
     });
-  console.log(this.state.expense)
+    
   }
   
   render() {
-    /* let rows = this.state.expenses.map(expense => {
-       return 
-         expense.type
-       <tr>
-         <td>{expense.type}</td>
-         <td>{expense.name}</td>
-         <td>{expense.date}</td>
-         <td>{expense.amount}</td>
-       </tr>
-     });*/
 
     return (
       <Container>
+        <Form>
         <Form.Row className="justify-content-md-center mt-4">
           <Col md="auto">
             <h4 className="text-body">Type:</h4>
           </Col>
-          <Form.Group as={Col} controlId="expenseType">
+          <Form.Group as={Col} controlId="exampleForm.ControlSelect1">
             <Form.Control
               as="select"
               value={this.state.type}
               name="type"
               onChange={this.handleChange}
             >
+              <option>Choose..</option>
               <option>Cash</option>
-              <option>Charge</option>
-              <option>Other</option>
+              <option>Debit Card</option>
+              <option>Credit Card</option>
+              <option>Check</option>
             </Form.Control>
           </Form.Group>
           <Col md="auto">
@@ -100,26 +99,23 @@ class ExpenseTracker extends Component {
             />
           </Form.Group>
         </Form.Row>
-        <Form.Row
-          className="justify-content-md-center mt-4"
-          onSubmit={this.handleSubmit}
-        >
-          <Col md="auto">
+        <Form.Row>
+        <Col md="auto">
             <h4 className="text-body">Date:</h4>
           </Col>
-          <Form.Group as={Col} controlId="date">
+          <Form.Group as={Col} >
             <Form.Control
-              name="date"
-              type="text"
-              placeholder="mm/dd/yyyy"
-              value={this.state.date}
+              type="input"
+              value={this.state.transactiondate}
+              placeholder=""
+              name="transactiondate"
               onChange={this.handleChange}
             />
           </Form.Group>
           <Col md="auto">
             <h4 className="text-body">Amount:</h4>
           </Col>
-          <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Group as={Col} controlId="amountSpent">
             <Form.Control
               type="input"
               value={this.state.amount}
@@ -127,6 +123,7 @@ class ExpenseTracker extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
+          </Form.Row>
           <Row className="justify-content-md-center mt-5">
             <Col md="auto">
               <ButtonToolbar>
@@ -136,7 +133,7 @@ class ExpenseTracker extends Component {
               </ButtonToolbar>
             </Col>
           </Row>
-        </Form.Row>
+</Form>
         <Table striped bordered hover variant="dark" className="mt-5">
           <thead>
             <tr>
