@@ -16,7 +16,7 @@ class ExpenseTracker extends Component {
     this.state = {
       type: "",
       name: "",
-      date: new Date(),
+      date: "",
       amount: "",
       expenses: []
     };
@@ -33,29 +33,41 @@ class ExpenseTracker extends Component {
   this.addRows()
   }
 
+  renderRows(expense, index) {
+    return (
+      <tr key={index}>
+        <td>{expense.type}</td>
+        <td>{expense.name}</td>
+        <td>{expense.date}</td>
+        <td>{expense.amount}</td>
+      </tr>
+    )
+  }
+
   addRows() {
     const addRow = {
       type: this.state.type,
       name: this.state.name,
       date: this.state.date,
      amount: this.state.amount
-      
-    }
+    };
     this.setState(prevState => {
-      prevState.expenses.push([...prevState.expenses, addRow])
-    })
-
+     return { expenses: [...prevState.expenses, addRow]}
+    });
+  console.log(this.state.expense)
   }
   
   render() {
-    let rows = this.state.expenses.map( expense => 
-      <tr>
-        <td>{expense.type}</td>
-        <td>{expense.name}</td>
-        <td>{expense.date}</td>
-        <td>{expense.amount}</td>
-      </tr>
-      )
+    /* let rows = this.state.expenses.map(expense => {
+       return 
+         expense.type
+       <tr>
+         <td>{expense.type}</td>
+         <td>{expense.name}</td>
+         <td>{expense.date}</td>
+         <td>{expense.amount}</td>
+       </tr>
+     });*/
 
     return (
       <Container>
@@ -135,7 +147,7 @@ class ExpenseTracker extends Component {
             </tr>
           </thead>
           <tbody> 
-            {rows}
+            {this.state.expenses.map(this.renderRows)}
           </tbody>
         </Table>
       </Container>
