@@ -29,7 +29,6 @@ class ExpenseTracker extends Component {
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-   
   }
 
 
@@ -37,16 +36,17 @@ class ExpenseTracker extends Component {
   this.addRows()
   }
 
-  deleteButton() {
 
-  }
 
-handleDelete = (id) => {
-const expenses = [...this.state.expenses];
-const updatedExpenses = expenses.filter(item => item.id !== id);
-this.setState({expenses: updatedExpenses})
+handleDelete = index => {
+ const expenses = [...this.state.expenses]
+ expenses.splice(index, 1);
+ this.setState({expenses: expenses})
+
 }
-  renderRows(expense, index) {
+
+
+ renderRows = (expense, index) => {
     return (
       <tr key={index}>
         <td>{expense.type}</td>
@@ -59,7 +59,7 @@ this.setState({expenses: updatedExpenses})
       </tr>
 
     )
- 
+    
   }
 
 
@@ -80,7 +80,7 @@ this.setState({expenses: updatedExpenses})
   }
   
   render() {
-
+  
     return (
       <Container>
         <Form>
@@ -161,7 +161,8 @@ this.setState({expenses: updatedExpenses})
           </thead>
           <tbody> 
             {this.state.expenses.map(this.renderRows)}
-       
+           
+
      
           </tbody>
         </Table>
