@@ -18,26 +18,34 @@ class ExpenseTracker extends Component {
     this.state = {
       type: "",
       name: "",
-      transactiondate: "",
+      transactiondate: new Date(Date.UTC),
       amount: "",
       expenses: []
     };
-
+    
   }
+   
 
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+   
   }
+
 
   handleSubmit = () => {
   this.addRows()
-  console.log(this.state.amount)
   }
 
+  deleteButton() {
 
+  }
 
-
+handleDelete = (id) => {
+const expenses = [...this.state.expenses];
+const updatedExpenses = expenses.filter(item => item.id !== id);
+this.setState({expenses: updatedExpenses})
+}
   renderRows(expense, index) {
     return (
       <tr key={index}>
@@ -45,22 +53,30 @@ class ExpenseTracker extends Component {
         <td>{expense.name}</td>
         <td>{expense.transactiondate}</td>
         <td>{expense.amount}</td>
+        <td><ButtonToolbar>
+        <Button variant="outline-light" onClick={this.handleDelete}>X</Button>
+          </ButtonToolbar></td>
       </tr>
+
     )
  
   }
- 
+
+
   addRows() {
     const addRow = {
       type: this.state.type,
       name: this.state.name,
-      date: this.state.transactiondate,
+      transactiondate: this.state.transactiondate,
      amount: this.state.amount
     };
     this.setState(prevState => {
-     return { expenses: [...prevState.expenses, addRow]}
+     return { 
+      expenses: [...prevState.expenses, addRow],
+    }
     });
     
+
   }
   
   render() {
@@ -68,7 +84,7 @@ class ExpenseTracker extends Component {
     return (
       <Container>
         <Form>
-        <Form.Row className="justify-content-md-center mt-4">
+        <Form.Row className="justify-content-md-center mt-2">
           <Col md="auto">
             <h4 className="text-body">Type:</h4>
           </Col>
@@ -105,9 +121,8 @@ class ExpenseTracker extends Component {
           </Col>
           <Form.Group as={Col} >
             <Form.Control
-              type="input"
+              type="date"
               value={this.state.transactiondate}
-              placeholder=""
               name="transactiondate"
               onChange={this.handleChange}
             />
@@ -124,7 +139,7 @@ class ExpenseTracker extends Component {
             />
           </Form.Group>
           </Form.Row>
-          <Row className="justify-content-md-center mt-5">
+          <Row className="justify-content-md-center mt-1">
             <Col md="auto">
               <ButtonToolbar>
                 <Button variant="success" size="lg" onClick={this.handleSubmit}>
@@ -141,10 +156,13 @@ class ExpenseTracker extends Component {
               <th>Name</th>
               <th>Date</th>
               <th>Amount</th>
+              <th></th>
             </tr>
           </thead>
           <tbody> 
             {this.state.expenses.map(this.renderRows)}
+       
+     
           </tbody>
         </Table>
       </Container>
