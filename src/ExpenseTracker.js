@@ -32,7 +32,7 @@ class ExpenseTracker extends Component {
   }
 
 
-  handleSubmit = () => {
+  handleSubmit = e => {
   this.addRows()
   }
 
