@@ -1,9 +1,7 @@
 # Expense Tracker - Track Your Spending Habits (React Native)
 
 This app is a handy and simple way to keep track of how, where, when, and how much you are spending.  It was created using React Native with Bootstrap for styling.  See my deployed version on Heroku - [HERE](https://infinite-forest-78481.herokuapp.com/) or open-source at [Github](https://github.com/ram071985/expense-tracker)
-
-
-(expense_tracker.png)
+![](expense_tracker.png)
 
 ## Summary
 
