@@ -42,7 +42,7 @@ handleDelete = index => {
  const expenses = [...this.state.expenses]
  expenses.splice(index, 1);
  this.setState({expenses: expenses})
-
+ 
 }
 
 
@@ -52,9 +52,9 @@ handleDelete = index => {
         <td>{expense.type}</td>
         <td>{expense.name}</td>
         <td>{expense.transactiondate}</td>
-        <td>{expense.amount}</td>
+        <td><span>$</span>{expense.amount}</td>
         <td><ButtonToolbar>
-        <Button variant="outline-light" onClick={this.handleDelete}>X</Button>
+        <Button variant="outline-light" onClick={(e) => this.handleDelete(index)}>X</Button>
           </ButtonToolbar></td>
       </tr>
 
