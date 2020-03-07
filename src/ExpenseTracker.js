@@ -10,6 +10,8 @@ import {
   Table
 } from "react-bootstrap";
 
+
+
 class ExpenseTracker extends Component {
   constructor() {
     super();
@@ -20,12 +22,15 @@ class ExpenseTracker extends Component {
       amount: "",
       expenses: []
     };
+    
   }
+   
 
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  };
+  }
+
 
   handleSubmit = () => {
   this.addRows()
@@ -33,49 +38,45 @@ class ExpenseTracker extends Component {
   }
 
 
-  handleDelete = index => {
-    const expenses = [...this.state.expenses];
-    expenses.splice(index, 1);
-    this.setState({ expenses: expenses });
-  };
 
-  renderRows = (expense, index) => {
+handleDelete = index => {
+ const expenses = [...this.state.expenses]
+ expenses.splice(index, 1);
+ this.setState({expenses: expenses})
+ 
+}
+
+
+ renderRows = (expense, index) => {
     return (
       <tr key={index}>
         <td>{expense.type}</td>
         <td>{expense.name}</td>
         <td>{expense.transactiondate}</td>
-        <td>
-          <span>$</span>
-          {expense.amount}
-        </td>
-        <td>
-          <ButtonToolbar>
-            <Button
-              variant="outline-light"
-              onClick={e => this.handleDelete(index)}
-            >
-              X
-            </Button>
-          </ButtonToolbar>
-        </td>
+        <td><span>$</span>{expense.amount}</td>
+        <td><ButtonToolbar>
+        <Button variant="outline-light" onClick={(e) => this.handleDelete(index)}>X</Button>
+          </ButtonToolbar></td>
       </tr>
-    );
-  };
 
-  addRows = () => {
+    )
+    
+  }
+
+
+  addRows() {
     const addRow = {
       type: this.state.type,
       name: this.state.name,
       transactiondate: this.state.transactiondate,
-      amount: this.state.amount
+     amount: this.state.amount
     };
     this.setState(prevState => {
-      return {
-        expenses: [...prevState.expenses, addRow]
-      };
+     return { 
+      expenses: [...prevState.expenses, addRow],
+    }
     });
-  };
+    
 
   }
 
@@ -89,63 +90,64 @@ class ExpenseTracker extends Component {
     }
   
   render() {
+  
     return (
       <Container>
         <Form>
-          <Form.Row className="justify-content-md-center mt-2">
-            <Col md="auto">
-              <h4 className="text-body">Type:</h4>
-            </Col>
-            <Form.Group as={Col} controlId="exampleForm.ControlSelect1">
-              <Form.Control
-                as="select"
-                value={this.state.type}
-                name="type"
-                onChange={this.handleChange}
-              >
-                <option>Choose..</option>
-                <option>Cash</option>
-                <option>Debit Card</option>
-                <option>Credit Card</option>
-                <option>Check</option>
-              </Form.Control>
-            </Form.Group>
-            <Col md="auto">
-              <h4 className="text-body">Name:</h4>
-            </Col>
-            <Form.Group as={Col} controlId="whereSpent">
-              <Form.Control
-                type="input"
-                value={this.state.name}
-                placeholder="Where was the expense made?"
-                name="name"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-          </Form.Row>
-          <Form.Row>
-            <Col md="auto">
-              <h4 className="text-body">Date:</h4>
-            </Col>
-            <Form.Group as={Col}>
-              <Form.Control
-                type="date"
-                value={this.state.transactiondate}
-                name="transactiondate"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-            <Col md="auto">
-              <h4 className="text-body">Amount:</h4>
-            </Col>
-            <Form.Group as={Col} controlId="amountSpent">
-              <Form.Control
-                type="input"
-                value={this.state.amount}
-                name="amount"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
+        <Form.Row className="justify-content-md-center mt-2">
+          <Col md="auto">
+            <h4 className="text-body">Type:</h4>
+          </Col>
+          <Form.Group as={Col} controlId="exampleForm.ControlSelect1">
+            <Form.Control
+              as="select"
+              value={this.state.type}
+              name="type"
+              onChange={this.handleChange}
+            >
+              <option>Choose..</option>
+              <option>Cash</option>
+              <option>Debit Card</option>
+              <option>Credit Card</option>
+              <option>Check</option>
+            </Form.Control>
+          </Form.Group>
+          <Col md="auto">
+            <h4 className="text-body">Name:</h4>
+          </Col>
+          <Form.Group as={Col} controlId="whereSpent">
+            <Form.Control
+              type="input"
+              value={this.state.name}
+              placeholder="Where was the expense made?"
+              name="name"
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+        </Form.Row>
+        <Form.Row>
+        <Col md="auto">
+            <h4 className="text-body">Date:</h4>
+          </Col>
+          <Form.Group as={Col} >
+            <Form.Control
+              type="date"
+              value={this.state.transactiondate}
+              name="transactiondate"
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Col md="auto">
+            <h4 className="text-body">Amount:</h4>
+          </Col>
+          <Form.Group as={Col} controlId="amountSpent">
+            <Form.Control
+              type="input"
+              value={this.state.amount}
+              name="amount"
+              onChange={this.handleChange}
+            />
+          </Form.Group>
           </Form.Row>
           <Row className="justify-content-md-center mt-1">
             <Col md="auto">
@@ -156,7 +158,7 @@ class ExpenseTracker extends Component {
               </ButtonToolbar>
             </Col>
           </Row>
-        </Form>
+</Form>
         <Table striped bordered hover variant="dark" className="mt-5">
           <thead>
             <tr>
@@ -167,7 +169,12 @@ class ExpenseTracker extends Component {
               <th></th>
             </tr>
           </thead>
-          <tbody>{this.state.expenses.map(this.renderRows)}</tbody>
+          <tbody> 
+            {this.state.expenses.map(this.renderRows)}
+           
+
+     
+          </tbody>
         </Table>
       </Container>
     );
