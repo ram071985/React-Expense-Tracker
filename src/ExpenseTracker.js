@@ -28,8 +28,10 @@ class ExpenseTracker extends Component {
   };
 
   handleSubmit = () => {
-    this.addRows();
-  };
+  this.addRows()
+  this.clearForms()
+  }
+
 
   handleDelete = index => {
     const expenses = [...this.state.expenses];
@@ -75,6 +77,17 @@ class ExpenseTracker extends Component {
     });
   };
 
+  }
+
+  clearForms = () => {
+    this.setState({
+      type: "",
+      name: "",
+      transactiondate: "",
+      amount: ""
+    });
+    }
+  
   render() {
     return (
       <Container>
