@@ -9,7 +9,7 @@ I created this app because of my pursuit over the years to become better at keep
 
 ## Local Installation Directions
 
-First install the project dependencies and scripts.  In the directory run the command:
+First install the project dependencies and scripts.  In the root directory run the command:
 
 ```
 npm i
