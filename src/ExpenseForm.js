@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Form, Button, Col, Row, ButtonToolbar } from 'react-bootstrap';
+import { Form, Button, Col, Row, ButtonToolbar } from "react-bootstrap";
 
 class ExpenseForm extends Component {
   render() {
-    return(
-        <Form>
+    return (
+      <Form>
         <Form.Row className="justify-content-md-center mt-2">
           <Col md="auto">
             <h4 className="text-body">Type:</h4>
@@ -63,14 +63,18 @@ class ExpenseForm extends Component {
         <Row className="justify-content-md-center mt-1">
           <Col md="auto">
             <ButtonToolbar>
-              <Button variant="success" size="lg" onClick={this.props.handleSubmit}>
+              <Button
+                variant="success"
+                size="lg"
+                onClick={this.props.handleSubmit}
+              >
                 Add Expense
               </Button>
             </ButtonToolbar>
           </Col>
         </Row>
       </Form>
-    )
+    );
   }
 }
 

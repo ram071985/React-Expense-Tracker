@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from 'react-bootstrap';
-import ExpenseForm from './ExpenseForm.js';
-import ExpensesTable from './ExpensesTable.js';
-
+import { Container } from "react-bootstrap";
+import ExpenseForm from "./ExpenseForm.js";
+import ExpensesTable from "./ExpensesTable.js";
 
 class ExpenseTracker extends Component {
   constructor() {
@@ -23,18 +22,15 @@ class ExpenseTracker extends Component {
   };
 
   handleSubmit = () => {
-  this.addRows()
-  this.clearForms()
-  }
-
+    this.addRows();
+    this.clearForms();
+  };
 
   handleDelete = index => {
     const expenses = [...this.state.expenses];
     expenses.splice(index, 1);
     this.setState({ expenses: expenses });
   };
-
-
 
   addRows = () => {
     const addRow = {
@@ -50,7 +46,6 @@ class ExpenseTracker extends Component {
     });
   };
 
-
   clearForms = () => {
     this.setState({
       type: "",
@@ -58,15 +53,25 @@ class ExpenseTracker extends Component {
       transactionDate: "",
       amount: ""
     });
-    }
-  
+  };
+
   render() {
     return (
       <Container>
-      <ExpenseForm type={this.state.type} name={this.state.name} transactionDate={this.state.transactionDate} amount={this.state.amount} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
-      <ExpensesTable expenses={this.state.expenses} handleDelete={this.handleDelete}/>
+        <ExpenseForm
+          type={this.state.type}
+          name={this.state.name}
+          transactionDate={this.state.transactionDate}
+          amount={this.state.amount}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
+        <ExpensesTable
+          expenses={this.state.expenses}
+          handleDelete={this.handleDelete}
+        />
       </Container>
-    )
+    );
   }
 }
 
