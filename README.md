@@ -1,7 +1,5 @@
 # Expense Tracker - Track Your Spending Habits
 
-This app is a handy and simple way to keep track of how, where, when, and how much you are spending.  It was created using React Native with Bootstrap for styling.  
-
 ## Summary
 
 This is my first React app and it posed many fun but challenging hurdles for me like learning about setting and changing state, using ES6 Javascript with arrow functions, brodening my bootstrap skills and the different ways React interacts with the DOM.  I also was able to get a good grasp of how to pass state to other components using props.
