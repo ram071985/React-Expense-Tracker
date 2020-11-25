@@ -1,6 +1,6 @@
 import React from "react";
-import TitleText from "./TitleText.js";
-import ExpenseTracker from "./ExpenseTracker";
+import TitleText from "./Components/TitleText.js";
+import ExpenseTracker from "./Components/ExpenseTracker";
 import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 

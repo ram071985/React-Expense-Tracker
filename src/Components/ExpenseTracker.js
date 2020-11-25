@@ -12,11 +12,11 @@ class ExpenseTracker extends Component {
       name: "",
       transactionDate: new Date(Date.UTC),
       amount: "",
-      expenses: []
+      expenses: [],
     };
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
@@ -26,7 +26,7 @@ class ExpenseTracker extends Component {
     this.clearForms();
   };
 
-  handleDelete = index => {
+  handleDelete = (index) => {
     const expenses = [...this.state.expenses];
     expenses.splice(index, 1);
     this.setState({ expenses: expenses });
@@ -37,11 +37,11 @@ class ExpenseTracker extends Component {
       type: this.state.type,
       name: this.state.name,
       transactionDate: this.state.transactionDate,
-      amount: this.state.amount
+      amount: this.state.amount,
     };
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
-        expenses: [...prevState.expenses, addRow]
+        expenses: [...prevState.expenses, addRow],
       };
     });
   };
@@ -51,7 +51,7 @@ class ExpenseTracker extends Component {
       type: "",
       name: "",
       transactionDate: "",
-      amount: ""
+      amount: "",
     });
   };
 
