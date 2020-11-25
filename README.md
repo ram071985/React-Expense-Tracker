@@ -6,7 +6,7 @@ This app is a handy and simple way to keep track of how, where, when, and how mu
 
 This is my first React app and it posed many fun but challenging hurdles for me like learning about setting and changing state, using ES6 Javascript with arrow functions, brodening my bootstrap skills and the different ways React interacts with the DOM.  I also was able to get a good grasp of how to pass state to other components using props.
 
-![](expense_tracker.png)
+![](src/Images/expense_tracker.png)
 
 See my deployed version on Heroku - [Expense Tracker](https://reid-expense-tracker.herokuapp.com/)
 
